@@ -7,7 +7,6 @@ export default {
     // FONT
     ftBright: "#03DAC6",
     ftMain: "#fff",
-
     ftLight: "#666",
     ftSLight: "rgba(250, 250, 250, 0.75)",
     ftMLight: "rgba(250, 250, 250, 0.55)",
