@@ -13,8 +13,8 @@ const FlexContainer = styled.div`
   & button {
       cursor: pointer;
       background: transparent;
-      color: ${props => props.theme.colors.ftSLight};
-      border: 1px solid ${props => props.theme.colors.ftSLight};
+      /* color: ${props => props.theme.colors.ftSLight};
+      border: 1px solid ${props => props.theme.colors.ftSLight}; */
       padding: 0.5rem 1rem;
       border-radius: 0.1rem;
       text-transform: uppercase;
