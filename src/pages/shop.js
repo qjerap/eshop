@@ -1,16 +1,13 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import styled from "styled-components"
 import Card from "../components/card"
 
 const Section = styled.section`
-  width: 70%;
-  /* margin: 0rem auto; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 70%;
 
   h2 {
     font-family: "Lemonada", cursive;
@@ -19,6 +16,7 @@ const Section = styled.section`
   @media (max-width: 1100px) {
     width: 90%;
   }
+
 
   @media (max-width: 800px) {
     width: 100%;
@@ -40,9 +38,12 @@ const Grid = styled.div`
   width: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
 
+  @media (max-width: 1300px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   @media (max-width: 800px) {
     grid-template-columns: 1fr 1fr;
   }
@@ -80,7 +81,7 @@ const Shop = () => {
   const coffees = data.allMarkdownRemark.edges
 
   return (
-    <Layout>
+    <>
       <Section>
         <ShopHero>
           <img
@@ -94,7 +95,7 @@ const Shop = () => {
           ))}
         </Grid>
       </Section>
-    </Layout>
+    </>
   )
 }
 

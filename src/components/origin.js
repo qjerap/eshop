@@ -9,11 +9,11 @@ const Section = styled.section`
   text-align: center;
 
   h2 {
-    font-family: "Lemonada", cursive;
+    font-weight: 300;
   }
 
   h3 {
-      font-weight: 500;
+    font-weight: 500;
   }
 
   p {
@@ -25,7 +25,7 @@ const Section = styled.section`
       column-count: 1;
       padding: 0 2rem;
       text-align: justify;
-  }
+    }
   }
 
   @media (max-width: 1100px) {
@@ -65,7 +65,13 @@ const Origin = () => {
           accusantium, porro expedita, possimus cupiditate, autem ad sapiente
           quasi! Voluptate placeat pariatur repellendus ullam soluta minus?
         </p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, nulla? Odit quisquam tempora laborum porro impedit et? Saepe doloribus nobis unde corrupti consequatur error sunt. Minus praesentium aliquid saepe eos. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem, tempora.</p>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, nulla?
+          Odit quisquam tempora laborum porro impedit et? Saepe doloribus nobis
+          unde corrupti consequatur error sunt. Minus praesentium aliquid saepe
+          eos. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Rem, tempora.
+        </p>
       </div>
       <Grid>
         <div>1</div>

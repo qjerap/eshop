@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from "react"
+import React, { useState} from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import styled, { ThemeProvider } from "styled-components"
+import styled from "styled-components"
 
 import Header from "./header"
+import Footer from "./footer"
 import "./layout.css"
 
-import lightTheme from "../themes/light"
-import darkTheme from "../themes/dark"
+
 
 const Body = styled.div`
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   font-family: "Montserrat", sans-serif;
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.bgMain};
+  p, ul, h1, h2, h3, h4, h5, h6, svg {
+    color: ${props => props.theme.colors.ftMain};
+  }
 `
 const Main = styled.main`
   margin: 5rem auto;
@@ -24,13 +27,15 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+
 `
 
 const Layout = ({ children }) => {
+console.log(children);
   const [isDarkMode, setDarkMode] = useState(false)
 
   const toggleDarkMode = () => {
-
     setDarkMode(!isDarkMode)
     localStorage.setItem("isDarkMode", isDarkMode)
     console.log(isDarkMode)
@@ -41,34 +46,13 @@ const Layout = ({ children }) => {
   //   setDarkMode(data)
   // }, [])
 
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <Body>
-        <Header
-          siteTitle={data.site.siteMetadata.title}
-          toggleDarkMode={toggleDarkMode}
-        />
+    <Body>
+      <Header />
+      <Main>{children}</Main>
+      <Footer/>
 
-        <Main>{children}</Main>
-
-        <footer>
-          © {new Date().getFullYear()},{` `}
-          <a target="_blank" href="https://romainpareja.com">
-            romain pareja
-          </a>
-        </footer>
-      </Body>
-    </ThemeProvider>
+    </Body>
   )
 }
 

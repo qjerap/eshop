@@ -12,7 +12,7 @@ const Section = styled.section`
   align-items: center;
 
   h2 {
-    font-family: "Lemonada", cursive;
+    font-weight: 300;
   }
 
   @media (max-width: 1100px) {
@@ -28,7 +28,7 @@ const Grid = styled.div`
   width: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
 
   @media (max-width: 800px) {
@@ -39,7 +39,7 @@ const Grid = styled.div`
 const Favorite = () => {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allMarkdownRemark(limit: 3) {
+      allMarkdownRemark(limit: 4) {
         edges {
           node {
             frontmatter {

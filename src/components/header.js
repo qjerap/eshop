@@ -2,16 +2,27 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
 
-const HeaderWrapper = styled.header`
-  background-color: ${props => props.theme.colors.background};
+const HeaderWrapper = styled.div`
+  background-color: ${props => props.theme.colors.bgSecondary};
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.01);
+
+`
+
+const HeaderFlex = styled.header`
+  margin: 1rem 0;
   width: 70%;
-  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
-  color: ${props => props.theme.colors.textColor};
+  color: ${props => props.theme.colors.ftMain};
 
   @media (max-width: 1100px) {
     width: 90%;
@@ -46,15 +57,38 @@ const HeaderWrapper = styled.header`
 
       a {
         font-size: 0.8rem;
-        font-weight: 300;
+        font-weight: 400;
         text-decoration: none;
-        color: ${props => props.theme.colors.textColor};
+        color: ${props => props.theme.colors.ftBright};
       }
 
       a:hover {
-        color: #000;
+        color: ${props => props.theme.colors.ftBright};;
       }
     }
+  }
+
+  .special {
+    position: relative;
+    width: 150px;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .snipcart-items-count {
+    /* position: absolute;
+    top: -1rem;
+    right: 0;
+    color: red;
+    font-size: 1rem;
+    z-index:10; */
+  }
+
+  .snipcart-checkout {
+    
+      color: ${props => props.theme.colors.ftMain};
+    
   }
 `
 
@@ -68,7 +102,7 @@ const LogoContainer = styled.div`
     padding: 1rem;
     line-height: 0.95;
     font-size: 2rem;
-    color: ${props => props.theme.colors.textColor};
+    color: ${props => props.theme.colors.ftBright};
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
@@ -80,42 +114,47 @@ const LogoContainer = styled.div`
     margin-top: -1rem;
     font-size: 0.7rem;
     text-align: center;
+    color: ${props => props.theme.colors.ftMain};
+
   }
 `
 
 const Header = ({ siteTitle, toggleDarkMode }) => {
   return (
     <HeaderWrapper>
-      {" "}
-      <LogoContainer>
-        <Link to="/">
-           The 
-          <br />
-          Mood
-          <br />
-        </Link>
-        <span>- micro.roastery -</span>
-      </LogoContainer>
-      <ul className="menu">
-        <li>
-          <Link to="/shop">shop</Link>
-        </li>
-        <li>
-          <Link to="/about">about</Link>
-        </li>
-        <li>
-          <Link to="/contact">contact</Link>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <Link>
-            <span className="snipcart-items-count"></span>{" "}
-            <span className="snipcart-checkout">item in cart</span>
+      <HeaderFlex>
+        {" "}
+        <LogoContainer>
+          <Link to="/">
+            The
+            <br />
+            Mood
+            <br />
           </Link>
-        </li>
-      </ul>
-      <button onClick={toggleDarkMode}>D</button>
+          <span>- micro.roastery -</span>
+        </LogoContainer>
+        <ul className="menu">
+          <li>
+            <Link to="/shop">shop</Link>
+          </li>
+          <li>
+            <Link to="/about">about</Link>
+          </li>
+          <li>
+            <Link to="/contact">contact</Link>
+          </li>
+        </ul>
+        <ul>
+          <li className="special">
+            <Link>
+              <span className="snipcart-checkout">
+                (<span className="snipcart-items-count"></span>){" "}
+                <FontAwesomeIcon size="lg" icon={faShoppingCart} />
+              </span>
+            </Link>
+          </li>
+        </ul>
+      </HeaderFlex>
     </HeaderWrapper>
   )
 }

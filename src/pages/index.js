@@ -9,12 +9,12 @@ import Origin from "../components/origin"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
     <Hero />
     <Favorite />
     <Origin />
-  </Layout>
+  </>
 )
 
 export default IndexPage

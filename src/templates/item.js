@@ -9,8 +9,10 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
 
-  h2 {
-    font-family: "Lemonada", cursive;
+  p {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-align: justify;
   }
 
   @media (max-width: 1100px) {
@@ -19,6 +21,47 @@ const Section = styled.section`
 
   @media (max-width: 800px) {
     width: 100%;
+  }
+`
+
+const FlexContainer = styled.div`
+  width: 100%;
+  display: Flex;
+  place-items: center;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`
+
+const ImageContainer = styled.div`
+  margin-right: 1rem;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 500px;
+  place-items: center;
+
+  img {
+    /* width: 500px; */
+  }
+`
+
+const ContentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* place-items: center; */
+
+  .title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+
+    h1 {
+    }
   }
 
   button {
@@ -30,8 +73,7 @@ const Section = styled.section`
     border: 1px solid #222;
     font-weight: 300;
     font-size: 0.9rem;
-    margin-top: -0.85rem;
-    opacity: 0.95;
+    opacity: 0.85;
 
     a {
       color: inherit;
@@ -53,42 +95,14 @@ const Section = styled.section`
   }
 `
 
-const FlexContainer = styled.div`
-  width: 100%;
-  display: Flex;
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
-`
-
-const ImageContainer = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 500px;
-  place-items: center;
-
-  img {
-    width: 500px;
-  }
-`
-
-const ContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-`
-
 const Item = ({ data }) => {
   const { markdownRemark } = data
   const { html } = markdownRemark
   const { title, price, slug, description } = markdownRemark.frontmatter
-  const image  = markdownRemark.frontmatter.image.childImageSharp.fluid.src
+  const image = markdownRemark.frontmatter.image.childImageSharp.fluid.src
 
   return (
-    <Layout>
+    <>
       <Section>
         <FlexContainer>
           <ImageContainer>
@@ -96,26 +110,41 @@ const Item = ({ data }) => {
           </ImageContainer>
 
           <ContentContainer>
-            <h1>{title}</h1>
-            <h2>{price}$</h2>
+            <div className="title">
+              <h1>- {title} -</h1>
+              <h4>{price}$</h4>
+            </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
-            <button
-              className="reverse snipcart-add-item"
-              data-item-id={title}
-              data-item-price={price}
-              data-item-url={slug}
-              data-item-description={description}
-              data-item-image={image}
-              data-item-name={title}
-            >
-              add to cart
-            </button>
+
+            <form className="product-option">
+              <div>
+                <h4>CHOOSE YOUR SIZE</h4>
+                <option value="test">test</option>
+                <option value="test2">test2</option>
+              </div>
+              <h4>WHOLE BEAN OR GROUND COFFEE</h4>
+              <option value="test">test</option>
+              <option value="test2">test2</option>
+
+              <button
+                className="reverse snipcart-add-item"
+                data-item-id={title}
+                data-item-price={price}
+                data-item-url={slug}
+                data-item-description={description}
+                data-item-image={image}
+                data-item-name={title}
+              >
+                add to cart
+              </button>
+            </form>
           </ContentContainer>
         </FlexContainer>
       </Section>
-    </Layout>
+    </>
   )
 }
+
 export const pageQuery = graphql`
   query($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {

@@ -10,6 +10,10 @@ const Grid = styled.section`
   grid-template-rows: repeat(12, 1fr);
   grid-gap: 1rem;
 
+  h3, h4 {
+    color: #fff;
+  }
+
   @media (max-width: 1100px) {
     width: 90%;
   }
@@ -96,8 +100,8 @@ const Grid = styled.section`
       }
 
       &:hover {
-        background-color: #fff;
-        color: #222;
+        color: ${props => props.theme.colors.ftBright};
+        border: 2px solid ${props => props.theme.colors.ftBright};
       }
     }
 
