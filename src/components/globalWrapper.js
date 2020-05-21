@@ -32,7 +32,7 @@ const GlobalWrapper = ({ children }) => {
   return (
     <>
       <ThemeProvider
-        theme={isDarkMode ? darkTheme : lightTheme}
+        theme={isDarkMode ? (isDarkMode ? darkTheme : lightTheme) : lightTheme}
         toggleDarkMode={toggleDarkMode}
       >
         <ThemeTrigger onClick={toggleDarkMode}>
