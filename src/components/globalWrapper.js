@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
+
 import lightTheme from "../themes/light"
 import darkTheme from "../themes/dark"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons"
 
@@ -32,8 +34,7 @@ const GlobalWrapper = ({ children }) => {
   return (
     <>
       <ThemeProvider
-        // theme={isDarkMode ? (isDarkMode ? darkTheme : lightTheme) : lightTheme}
-        theme={darkTheme}
+        theme={isDarkMode ? lightTheme : darkTheme}
         toggleDarkMode={toggleDarkMode}
       >
         <ThemeTrigger onClick={toggleDarkMode}>
