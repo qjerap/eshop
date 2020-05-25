@@ -10,8 +10,10 @@ const Section = styled.section`
   flex-direction: column;
 
   p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
+    color: ${props => props.theme.colors.ftMain};
+    opacity: 0.85;
     text-align: justify;
   }
 
@@ -57,14 +59,11 @@ const ContentContainer = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-around;
+    font-size: .85rem;
+    text-transform: uppercase;
+    font-weight: 300;
   }
 
-  ul:last-child {
-    /* text-align: right; */
-  }
-
-  li {
-  }
 
   .title {
     width: 100%;
@@ -72,6 +71,18 @@ const ContentContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    h4 {
+      font-size: .95rem;
+    }
+
+    p {
+      font-size: .75rem;
+    }
 
     h1, h4 {
     font-weight: 300;
@@ -145,7 +156,7 @@ const Item = ({ data }) => {
               <h1>{title}</h1>
               <h4>{price}$</h4>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
+            <div className="text-content" dangerouslySetInnerHTML={{ __html: html }} />
 
             <div className="desc">
               <ul>
