@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 
@@ -43,7 +43,6 @@ const ImageContainer = styled.div`
   place-items: center;
 
   img {
-    /* width: 500px; */
   }
 `
 
@@ -51,7 +50,18 @@ const ContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* place-items: center; */
+  justify-content: center;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 1rem;
+  }
+
+  li {
+    display: grid;
+    text-align: center;
+  }
 
   .title {
     width: 100%;
@@ -65,36 +75,37 @@ const ContentContainer = styled.div`
   }
 
   & button {
-      cursor: pointer;
-      background: transparent;
-      color: #fff;
-      width: 100%;
-      border: 2px solid #fff;
-      padding: 0.5rem 0.25rem;
-      border-radius: 0.1rem;
-      text-transform: uppercase;
-      font-weight: 300;
-      font-size: 0.9rem;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    width: 60%;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.1rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 0.9rem;
 
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: ${props => props.theme.colors.ftBright};
+      border: 2px solid ${props => props.theme.colors.ftBright};
+    }
+
+    &.reverse {
+      background-color: ${props => props.theme.colors.ftBright};
+      border: 2px solid ${props => props.theme.colors.ftBright};
 
       &:hover {
+        background-color: transparent;
         color: ${props => props.theme.colors.ftBright};
-        border: 2px solid ${props => props.theme.colors.ftBright};
-      }
-
-      &.reverse {
-        background-color: ${props => props.theme.colors.ftBright};
-        border: 2px solid ${props => props.theme.colors.ftBright};
-
-        &:hover {
-          background-color: transparent;
-          color: ${props => props.theme.colors.ftBright};
-        }
       }
     }
+  }
 `
 
 const Item = ({ data }) => {
@@ -102,6 +113,20 @@ const Item = ({ data }) => {
   const { html } = markdownRemark
   const { title, price, slug, description } = markdownRemark.frontmatter
   const image = markdownRemark.frontmatter.image.childImageSharp.fluid.src
+  const [quantity, setQuantity] = useState(1)
+  const [size, setSize] = useState(1)
+
+  function handleSize(e) {
+    setSize(e.target.value)
+  }
+
+  function handleQuantity(e) {
+    if (e.target.innerHTML === "-") {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
 
   return (
     <>
@@ -118,28 +143,33 @@ const Item = ({ data }) => {
             </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
 
-            <form className="product-option">
-              <div>
-                <h4>CHOOSE YOUR SIZE</h4>
-                <option value="test">test</option>
-                <option value="test2">test2</option>
-              </div>
-              <h4>WHOLE BEAN OR GROUND COFFEE</h4>
-              <option value="test">test</option>
-              <option value="test2">test2</option>
+            <ul>
+              <li>availability: Year round</li>
+              <li>type: blend</li>
+              <li>tasting notes: toffee</li>
+              <li>country: {title}</li>
+              <li>process: natural</li>
+              <li>direct trade: yes</li>
+            </ul>
 
-              <button
-                className="snipcart-add-item reverse"
-                data-item-id={title}
-                data-item-price={price}
-                data-item-url={slug}
-                data-item-description={description}
-                data-item-image={image}
-                data-item-name={title}
-              >
-                add to cart
-              </button>
-            </form>
+            <button
+              className="snipcart-add-item reverse"
+              data-item-id={title}
+              data-item-price={price}
+              data-item-url={slug}
+              data-item-description={description}
+              data-item-image={image}
+              data-item-name={title}
+              data-item-quantity={quantity}
+              data-item-custom1-name="size"
+              data-item-custom1-options={`1 lbs|2 lbs[+${price}]|5 lbs[+${
+                price * 5
+              }]`}
+              data-item-custom2-name="format"
+              data-item-custom2-options="whole bean|ground coffee"
+            >
+              add to cart
+            </button>
           </ContentContainer>
         </FlexContainer>
       </Section>
