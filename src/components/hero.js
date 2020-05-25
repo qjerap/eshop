@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from 'gatsby'
 import styled from "styled-components"
 
 const Grid = styled.section`
@@ -124,37 +125,43 @@ const Hero = () => {
     <Grid>
       <div className="first">
         <img
-          src="https://images.unsplash.com/photo-1532713107108-dfb5d8d2fc42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80"
+          src="/hero1_small.jpg"
           alt=""
         />
         <div className="test">
           <div className="content">
             <h3>visit us</h3>
             <h4>Miles end - Montreal</h4>
-            <button>FIND US</button>
+            <Link to="/contact">
+              <button>FIND US</button>
+            </Link>
           </div>
         </div>
       </div>
       <div className="second">
         <img
-          src="https://images.unsplash.com/photo-1560864495-43c981fc9ad6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
+          src="/hero2_small.jpg"
           alt=""
         />
         <div className="content">
-          <h3>NEW SINGLE ORIGIN: Yigarcheffe</h3>
+          <h3>NEW SINGLE ORIGIN: Yirgacheffe</h3>
           <h4>Taste from ethiopia </h4>
-          <button>show more</button>
+          <Link to="/shop/beans/ethiopia">
+            <button>show more</button>
+          </Link>
         </div>
       </div>
       <div className="third">
         <img
-          src="https://2.bp.blogspot.com/-MJjDIrudxGY/WlWwl3CsVXI/AAAAAAAEzQM/xuMeS5-BNHIv6fT2_BnxtbEBsKXvt3CqACLcBGAs/s1600/themood%2B%25281%2529.jpg"
+          src="/hero3_small.jpg"
           alt=""
         />
         <div className="content">
           <h3>The Best every morning</h3>
           <h4>Free shiping on order of 39$ and more!</h4>
-          <button>shop now</button>
+          <Link to="/shop">
+            <button>shop now</button>
+          </Link>
         </div>
       </div>
     </Grid>

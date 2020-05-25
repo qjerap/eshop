@@ -28,12 +28,21 @@ position: relative;
   }
 
   .product-title {
-    letter-spacing: 1.1px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 300;
     font-size: 1.25rem; 
     margin-bottom: .5rem;
-    &::first-letter {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+
+    & .price {
+      font-size: .75rem;
+      font-weight: 500; 
+      color: ${props => props.theme.colors.ftSLight};
     }
   }        
 
@@ -41,7 +50,7 @@ position: relative;
   .product-button {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-items: center;
+    justify-items: space-between;
     grid-gap: 1rem;
     width: 100%;
     margin-top: -1rem;
@@ -49,13 +58,13 @@ position: relative;
     & button {
       cursor: pointer;
       background: transparent;
-      color: ${props => props.theme.colors.ftSLight};
-      border: 1px solid ${props => props.theme.colors.ftSLight};
-      padding: 0.5rem 1rem;
+      color: #fff;
+      width: 100%;
+      border: 2px solid #fff;
+      padding: 0.5rem 0.75rem;
       border-radius: 0.1rem;
       text-transform: uppercase;
       font-weight: 300;
-      font-size: .8rem;
 
       &:focus {
         outline: none;
@@ -63,8 +72,19 @@ position: relative;
 
       &:hover {
         color: ${props => props.theme.colors.ftBright};
-        border: 1px solid ${props => props.theme.colors.ftBright};
+        border: 2px solid ${props => props.theme.colors.ftBright};
       }
+
+      &.reverse {
+        background-color: ${props => props.theme.colors.ftBright};
+        border: 2px solid ${props => props.theme.colors.ftBright};
+
+        &:hover {
+          background-color: transparent;
+          color: ${props => props.theme.colors.ftBright};
+        }
+      }
+    }
 
       a {
         color: inherit;
@@ -90,14 +110,18 @@ const Card = props => {
   console.log(image)
   return (
     <CardContainer>
-      <h4 className="product-title">{title}</h4>
+      <h4 className="product-title">
+        <span>{title}</span>
+        <span className="price">{price}$</span>
+      </h4>
       <div className="product-img">
         <img src={image} alt="" />
       </div>
       <div className="product-button">
-        <button>
-          <Link to={slug}>view more</Link>
-        </button>
+        <Link to={slug}>
+          <button>view more</button>
+        </Link>
+
         <button
           className="reverse snipcart-add-item"
           data-item-id={title}

@@ -69,7 +69,7 @@ const about = () => {
     <>
       <Section>
         <img
-          src="https://images.unsplash.com/photo-1518081692809-d68867210ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2085&q=80"
+          src="/about1_small.jpg"
           alt=""
         />
         <Grid>
