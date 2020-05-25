@@ -90,18 +90,10 @@ position: relative;
         color: inherit;
         text-decoration: none;
       }
-/* 
-      &.reverse {
-        color: ${props => props.theme.colors.ftBright};
-        border: 2px solid ${props => props.theme.colors.ftBright};
 
-        &:hover {
-          color: ${props => props.theme.colors.ftSLight};
-          border: 2px solid ${props => props.theme.colors.ftSLight};
-        }
-      } */
     }
   }
+  
 `
 
 const Card = props => {
