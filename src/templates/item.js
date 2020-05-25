@@ -52,15 +52,18 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 1rem;
+  .desc {
+    margin: 1rem 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  ul:last-child {
+    /* text-align: right; */
   }
 
   li {
-    display: grid;
-    text-align: center;
   }
 
   .title {
@@ -70,7 +73,8 @@ const ContentContainer = styled.div`
     align-items: center;
     text-transform: uppercase;
 
-    h1 {
+    h1, h4 {
+    font-weight: 300;
     }
   }
 
@@ -138,19 +142,24 @@ const Item = ({ data }) => {
 
           <ContentContainer>
             <div className="title">
-              <h1>- {title} -</h1>
+              <h1>{title}</h1>
               <h4>{price}$</h4>
             </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
 
-            <ul>
-              <li>availability: Year round</li>
-              <li>type: blend</li>
-              <li>tasting notes: toffee</li>
-              <li>country: {title}</li>
-              <li>process: natural</li>
-              <li>direct trade: yes</li>
-            </ul>
+            <div className="desc">
+              <ul>
+                <li>availability: Year round</li>
+                <li>type: blend</li>
+                <li>tasting notes: toffee</li>
+              </ul>
+
+              <ul>
+                <li>country: {title}</li>
+                <li>process: natural</li>
+                <li>direct trade: yes</li>
+              </ul>
+            </div>
 
             <button
               className="snipcart-add-item reverse"
