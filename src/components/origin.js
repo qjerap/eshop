@@ -20,6 +20,11 @@ const Section = styled.section`
     text-align: initial;
     column-count: 3;
     line-height: 2;
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    color: ${props => props.theme.colors.ftMain};
+    opacity: 0.95;
+    text-align: justify;
 
     @media (max-width: 800px) {
       column-count: 1;
@@ -72,6 +77,7 @@ const Origin = () => {
           eos. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet
           consectetur adipisicing elit. Rem, tempora.
         </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa rerum minus ipsam repudiandae rem unde, nam illum animi facilis illo quos minima maxime deserunt hic. Id voluptates assumenda sunt debitis eligendi ullam neque incidunt, voluptatibus quod animi commodi possimus, voluptatem officiis deleniti modi odio? Nisi consectetur deleniti qui, sequi, vel nostrum odio nam beatae ipsa sint porro quae laborum.</p>
       </div>
       <Grid>
         <div>1</div>

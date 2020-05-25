@@ -15,15 +15,6 @@ const Section = styled.section`
 
   @media (max-width: 800px) {
     width: 100%;
-
-    h1,
-    h2,
-    h3,
-    p {
-      width: 90%;
-      margin: 1rem auto;
-    }
-
   }
 
   /* ############## */
@@ -54,10 +45,26 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   margin: 2rem 0;
 
-      
-  h2 {
-      font-weight: 300;
-    }
+  h1,
+  h2,
+  h3,
+  p {
+    width: 90%;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    color: ${props => props.theme.colors.ftMain};
+    opacity: 0.95;
+    text-align: justify;
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: 1.75rem;
+  }
 
   @media (max-width: 1100px) {
     grid-template-columns: 1fr;
@@ -68,13 +75,10 @@ const about = () => {
   return (
     <>
       <Section>
-        <img
-          src="/about1_small.jpg"
-          alt=""
-        />
+        <img src="/about1_small.jpg" alt="" />
         <Grid>
           <div>
-            <h2>Our Story</h2>
+            <h1>Our Story</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
               fugit ex officiis vitae qui excepturi officia explicabo laboriosam
@@ -89,7 +93,7 @@ const about = () => {
             </p>
           </div>
           <div>
-            <h2>Lorem ipsum dolor sit amet.</h2>
+            <h1>Lorem ipsum dolor sit amet.</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Exercitationem nobis odio architecto cum.

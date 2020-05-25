@@ -9,13 +9,6 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
 
-  p {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: ${props => props.theme.colors.ftMain};
-    opacity: 0.85;
-    text-align: justify;
-  }
 
   @media (max-width: 1100px) {
     width: 90%;
@@ -50,9 +43,11 @@ const ImageContainer = styled.div`
 
 const ContentContainer = styled.div`
   width: 100%;
+  height: 550px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  
 
   .desc {
     margin: 1rem 0;
@@ -62,6 +57,14 @@ const ContentContainer = styled.div`
     font-size: .85rem;
     text-transform: uppercase;
     font-weight: 300;
+  }
+
+  p {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    color: ${props => props.theme.colors.ftMain};
+    opacity: 0.85;
+    text-align: justify;
   }
 
 
@@ -80,9 +83,6 @@ const ContentContainer = styled.div`
       font-size: .95rem;
     }
 
-    p {
-      font-size: .75rem;
-    }
 
     h1, h4 {
     font-weight: 300;
@@ -93,7 +93,7 @@ const ContentContainer = styled.div`
     cursor: pointer;
     background: transparent;
     color: #fff;
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     border: 2px solid #fff;
     padding: 0.5rem 0.25rem;
