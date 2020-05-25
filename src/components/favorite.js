@@ -31,6 +31,9 @@ const Grid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
 
+  @media (max-width: 1400px) {
+    grid-template-columns: 1fr 1fr;
+  }
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
@@ -45,7 +48,7 @@ const Favorite = () => {
             frontmatter {
               image {
                 childImageSharp {
-                  fluid(maxWidth: 500) {
+                  fluid(maxWidth: 700) {
                     src
                   }
                 }

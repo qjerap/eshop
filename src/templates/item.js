@@ -64,35 +64,37 @@ const ContentContainer = styled.div`
     }
   }
 
-  button {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    background-color: transparent;
-    color: #222;
-    text-transform: uppercase;
-    border: 1px solid #222;
-    font-weight: 300;
-    font-size: 0.9rem;
-    opacity: 0.85;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &.reverse {
-      background-color: #222;
+  & button {
+      cursor: pointer;
+      background: transparent;
       color: #fff;
+      width: 100%;
+      border: 2px solid #fff;
+      padding: 0.5rem 0.25rem;
+      border-radius: 0.1rem;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        color: ${props => props.theme.colors.ftBright};
+        border: 2px solid ${props => props.theme.colors.ftBright};
+      }
+
+      &.reverse {
+        background-color: ${props => props.theme.colors.ftBright};
+        border: 2px solid ${props => props.theme.colors.ftBright};
+
+        &:hover {
+          background-color: transparent;
+          color: ${props => props.theme.colors.ftBright};
+        }
+      }
     }
-  }
 `
 
 const Item = ({ data }) => {
@@ -127,7 +129,7 @@ const Item = ({ data }) => {
               <option value="test2">test2</option>
 
               <button
-                className="reverse snipcart-add-item"
+                className="snipcart-add-item reverse"
                 data-item-id={title}
                 data-item-price={price}
                 data-item-url={slug}

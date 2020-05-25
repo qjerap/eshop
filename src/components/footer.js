@@ -183,7 +183,9 @@ const Footer = () => {
           <div>
             <h5>YOUR COFFEE, YOUR HOME</h5>
             <h6>BE IN THE MOOD</h6>
-            <button>SHOP</button>
+            <Link to="/shop">
+              <button>SHOP</button>
+            </Link>
           </div>
         </GridItem>
         <GridItem>

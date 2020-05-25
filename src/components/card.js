@@ -61,10 +61,11 @@ position: relative;
       color: #fff;
       width: 100%;
       border: 2px solid #fff;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.25rem;
       border-radius: 0.1rem;
       text-transform: uppercase;
       font-weight: 300;
+      font-size: 0.9rem;
 
       &:focus {
         outline: none;
@@ -99,7 +100,6 @@ position: relative;
 const Card = props => {
   const { slug, price, title, description } = props.data.node.frontmatter
   const image = props.data.node.frontmatter.image.childImageSharp.fluid.src
-  console.log(image)
   return (
     <CardContainer>
       <h4 className="product-title">
@@ -110,7 +110,7 @@ const Card = props => {
         <img src={image} alt="" />
       </div>
       <div className="product-button">
-        <Link to={slug}>
+        <Link to={`${slug}/?#/`}>
           <button>view more</button>
         </Link>
 
