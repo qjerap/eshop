@@ -1,5 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { TransitionState } from "gatsby-plugin-transition-link"
+import { motion } from "framer-motion"
 
 import styled from "styled-components"
 import Card from "../components/card"
@@ -8,6 +10,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   width: 70%;
+  margin: 0 auto;
 
   h2 {
     font-family: "Lemonada", cursive;
@@ -16,7 +19,6 @@ const Section = styled.section`
   @media (max-width: 1100px) {
     width: 90%;
   }
-
 
   @media (max-width: 800px) {
     width: 100%;
@@ -78,10 +80,57 @@ const Shop = () => {
     }
   `)
 
+
+
   const coffees = data.allMarkdownRemark.edges
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: 0,
+      x: -60
+    },
+    show: {
+      opacity: 1,
+      translateY: 0,
+
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 200,
+        mass: .5,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 500,
+        mass: 1,
+      },
+    },
+  }
+
+
+
   return (
-    <>
+    <TransitionState>
+      {({ transitionStatus }) => {
+        return (
+          <motion.div
+            initial="hidden"
+            variants={containerVariants}
+            animate={
+              ["entering", "entered"].includes(transitionStatus)
+                ? "show"
+                : "exit"
+            }
+          >
       <Section>
         <ShopHero>
           <img
@@ -95,8 +144,11 @@ const Shop = () => {
           ))}
         </Grid>
       </Section>
-    </>
-  )
+      </motion.div>
+      )
+    }}
+  </TransitionState>
+)
 }
 
 export default Shop

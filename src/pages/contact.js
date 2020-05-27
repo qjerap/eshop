@@ -1,10 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-
+import { TransitionState } from "gatsby-plugin-transition-link"
+import { motion } from "framer-motion"
 
 const FlexContainer = styled.div`
   display: flex;
   width: 70%;
+  margin: 0 auto;
+
 
       
   h2 {
@@ -94,7 +97,51 @@ const ContactForm = styled.form`
 `
 
 const Contact = () => {
+
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: 0,
+      x: -60
+    },
+    show: {
+      opacity: 1,
+      translateY: 0,
+
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 200,
+        mass: .5,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 500,
+        mass: 1,
+      },
+    },
+  }
+
   return (
+    <TransitionState>
+      {({ transitionStatus }) => {
+        return (
+          <motion.div
+            initial="hidden"
+            variants={containerVariants}
+            animate={
+              ["entering", "entered"].includes(transitionStatus)
+                ? "show"
+                : "exit"
+            }
+          >
     <FlexContainer>
       <section>
         <h2>Give us a visit</h2>
@@ -137,7 +184,12 @@ const Contact = () => {
         </ContactForm>
       </section>
     </FlexContainer>
-  )
+    </motion.div>
+    )
+  }}
+</TransitionState>
+)
+  
 }
 
 export default Contact

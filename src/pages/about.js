@@ -1,13 +1,17 @@
 import React from "react"
-
 import styled from "styled-components"
+import { TransitionState } from "gatsby-plugin-transition-link"
+import { motion } from "framer-motion"
 
 const Section = styled.section`
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   width: 70%;
   text-align: justify;
   align-items: center;
+
+  margin: 0 auto;
 
   @media (max-width: 1100px) {
     width: 90%;
@@ -72,45 +76,91 @@ const Grid = styled.div`
 `
 
 const about = () => {
-  return (
-    <>
-      <Section>
-        <img src="/about1_small.jpg" alt="" />
-        <Grid>
-          <div>
-            <h1>Our Story</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              fugit ex officiis vitae qui excepturi officia explicabo laboriosam
-              reprehenderit possimus amet doloremque, placeat natus. Hic quo
-              facere quibusdam fugiat in!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Consequatur amet aliquid earum eius hic totam, illum, autem est
-              aperiam enim molestiae porro quidem reprehenderit? Laboriosam non
-              deleniti ut numquam magni.
-            </p>
-          </div>
-          <div>
-            <h1>Lorem ipsum dolor sit amet.</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem nobis odio architecto cum.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Nulla facilis similique, beatae
-              repellat aspernatur assumenda. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Cumque a adipisci eius mollitia
-              voluptas quisquam consectetus.
-            </p>
-          </div>
-        </Grid>
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: 0,
+      x: -60
+    },
+    show: {
+      opacity: 1,
+      translateY: 0,
 
-        <hr />
-      </Section>
-    </>
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 200,
+        mass: .5,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 500,
+        mass: 1,
+      },
+    },
+  }
+
+  return (
+    <TransitionState>
+      {({ transitionStatus }) => {
+        return (
+          <motion.div
+            initial="hidden"
+            variants={containerVariants}
+            animate={
+              ["entering", "entered"].includes(transitionStatus)
+                ? "show"
+                : "exit"
+            }
+          >
+            <Section>
+              <img src="/about1_small.jpg" alt="" />
+              <Grid>
+                <div>
+                  <h1>Our Story</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quas fugit ex officiis vitae qui excepturi officia explicabo
+                    laboriosam reprehenderit possimus amet doloremque, placeat
+                    natus. Hic quo facere quibusdam fugiat in!
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consequatur amet aliquid earum eius hic totam, illum, autem
+                    est aperiam enim molestiae porro quidem reprehenderit?
+                    Laboriosam non deleniti ut numquam magni.
+                  </p>
+                </div>
+                <div>
+                  <h1>Lorem ipsum dolor sit amet.</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Exercitationem nobis odio architecto cum.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet
+                    consectetur adipisicing elit. Nulla facilis similique,
+                    beatae repellat aspernatur assumenda. Lorem ipsum dolor sit
+                    amet consectetur adipisicing elit. Cumque a adipisci eius
+                    mollitia voluptas quisquam consectetus.
+                  </p>
+                </div>
+              </Grid>
+
+              <hr />
+            </Section>
+          </motion.div>
+        )
+      }}
+    </TransitionState>
   )
 }
 

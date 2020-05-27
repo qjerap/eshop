@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
+import { TransitionState } from "gatsby-plugin-transition-link"
+import { motion } from "framer-motion"
 
 import Layout from "../components/layout"
 
@@ -8,7 +10,7 @@ const Section = styled.section`
   width: 70%;
   display: flex;
   flex-direction: column;
-
+  margin: 0 auto;
 
   @media (max-width: 1100px) {
     width: 90%;
@@ -34,7 +36,7 @@ const ImageContainer = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   place-items: center;
 
   img {
@@ -47,14 +49,13 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 
   .desc {
     margin: 1rem 0;
     display: flex;
     width: 100%;
     justify-content: space-around;
-    font-size: .85rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     font-weight: 300;
   }
@@ -66,7 +67,6 @@ const ContentContainer = styled.div`
     opacity: 0.85;
     text-align: justify;
   }
-
 
   .title {
     width: 100%;
@@ -80,12 +80,12 @@ const ContentContainer = styled.div`
     }
 
     h4 {
-      font-size: .95rem;
+      font-size: 0.95rem;
     }
 
-
-    h1, h4 {
-    font-weight: 300;
+    h1,
+    h4 {
+      font-weight: 300;
     }
   }
 
@@ -143,8 +143,51 @@ const Item = ({ data }) => {
     }
   }
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: 0,
+      x: -60
+    },
+    show: {
+      opacity: 1,
+      translateY: 0,
+
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 200,
+        mass: .5,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 500,
+        mass: 1,
+      },
+    },
+  }
+
   return (
-    <>
+    <TransitionState>
+      {({ transitionStatus }) => {
+        return (
+          <motion.div
+            initial="hidden"
+            variants={containerVariants}
+            animate={
+              ["entering", "entered"].includes(transitionStatus)
+                ? "show"
+                : "exit"
+            }
+          >
       <Section>
         <FlexContainer>
           <ImageContainer>
@@ -156,7 +199,10 @@ const Item = ({ data }) => {
               <h1>{title}</h1>
               <h4>{price}$</h4>
             </div>
-            <div className="text-content" dangerouslySetInnerHTML={{ __html: html }} />
+            <div
+              className="text-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
 
             <div className="desc">
               <ul>
@@ -193,8 +239,11 @@ const Item = ({ data }) => {
           </ContentContainer>
         </FlexContainer>
       </Section>
-    </>
-  )
+      </motion.div>
+      )
+    }}
+  </TransitionState>
+)
 }
 
 export const pageQuery = graphql`

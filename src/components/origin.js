@@ -77,7 +77,15 @@ const Origin = () => {
           eos. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet
           consectetur adipisicing elit. Rem, tempora.
         </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa rerum minus ipsam repudiandae rem unde, nam illum animi facilis illo quos minima maxime deserunt hic. Id voluptates assumenda sunt debitis eligendi ullam neque incidunt, voluptatibus quod animi commodi possimus, voluptatem officiis deleniti modi odio? Nisi consectetur deleniti qui, sequi, vel nostrum odio nam beatae ipsa sint porro quae laborum.</p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita
+          culpa rerum minus ipsam repudiandae rem unde, nam illum animi facilis
+          illo quos minima maxime deserunt hic. Id voluptates assumenda sunt
+          debitis eligendi ullam neque incidunt, voluptatibus quod animi commodi
+          possimus, voluptatem officiis deleniti modi odio? Nisi consectetur
+          deleniti qui, sequi, vel nostrum odio nam beatae ipsa sint porro quae
+          laborum.
+        </p>
       </div>
       <Grid>
         <div>1</div>
