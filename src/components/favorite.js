@@ -20,6 +20,7 @@ const Section = styled.section`
   }
 
   @media (max-width: 800px) {
+    margin-top: 15rem;
     width: 100%;
   }
 `

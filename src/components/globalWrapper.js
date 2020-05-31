@@ -3,6 +3,8 @@ import styled, { ThemeProvider } from "styled-components"
 
 import lightTheme from "../themes/light"
 import darkTheme from "../themes/dark"
+import Modal from "./modal"
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons"
@@ -11,8 +13,9 @@ import Layout from "./layout"
 
 const GlobalWrapper = ({ children }) => {
   const ThemeTrigger = styled.div`
-  cursor: pointer;
+    cursor: pointer;
     position: fixed;
+    z-index: 10;
     opacity: 0.5;
     top: 3%;
     left: 1%;
@@ -31,6 +34,16 @@ const GlobalWrapper = ({ children }) => {
     console.log(isDarkMode)
   }
 
+  const [showModal, setShowModal] = useState("hidden")
+
+  const toggleModal = () => {
+    if (showModal === "hidden") {
+      setShowModal("show")
+    } else if (showModal === "show") {
+      setShowModal("hidden")
+    }
+  }
+
   return (
     <>
       <ThemeProvider
@@ -40,7 +53,7 @@ const GlobalWrapper = ({ children }) => {
         <ThemeTrigger onClick={toggleDarkMode}>
           <FontAwesomeIcon size="lg" icon={faLightbulb} />
         </ThemeTrigger>
-        <Layout>{children}</Layout>
+        <Layout toggleModal={toggleModal} showModal={showModal}>{children}</Layout>
       </ThemeProvider>
     </>
   )

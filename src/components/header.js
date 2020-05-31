@@ -4,6 +4,7 @@ import React from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 
 const HeaderWrapper = styled.div`
   background-color: ${props => props.theme.colors.bgSecondary};
@@ -12,10 +13,10 @@ const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.01);
-
 `
 
 const HeaderFlex = styled.header`
+  position: relative;
   margin: 1rem 0;
   width: 70%;
   display: flex;
@@ -30,6 +31,7 @@ const HeaderFlex = styled.header`
 
   @media (max-width: 800px) {
     justify-content: center;
+    margin: 1rem 0;
 
     width: 100%;
   }
@@ -63,17 +65,45 @@ const HeaderFlex = styled.header`
       }
 
       a:hover {
-        color: ${props => props.theme.colors.ftBright};;
+        color: ${props => props.theme.colors.ftMain};
       }
+
+      .active {
+        color:${props => props.theme.colors.ftMain};
+      }
+    }
+  }
+
+  .burger-icon {
+    position: absolute;
+    right: 5%;
+    display: none;
+    cursor: pointer;
+    font-size: 2em;
+    opacity: 0.8;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    @media (max-width: 800px) {
+      display: block;
     }
   }
 
   .special {
     position: relative;
-    width: 150px;
+    /* width: 150px; */
     padding: 0;
     display: flex;
     justify-content: flex-end;
+
+    @media (max-width: 800px) {
+      position: absolute;
+      left: 0;
+    }
   }
 
   .snipcart-items-count {
@@ -86,9 +116,7 @@ const HeaderFlex = styled.header`
   }
 
   .snipcart-checkout {
-    
-      color: ${props => props.theme.colors.ftMain};
-    
+    color: ${props => props.theme.colors.ftMain};
   }
 `
 
@@ -115,17 +143,18 @@ const LogoContainer = styled.div`
     font-size: 0.7rem;
     text-align: center;
     color: ${props => props.theme.colors.ftMain};
-
   }
 `
 
-const Header = ({ siteTitle, toggleDarkMode }) => {
+const Header = ({ siteTitle, toggleDarkMode, toggleModal }) => {
   return (
     <HeaderWrapper>
       <HeaderFlex>
         {" "}
         <LogoContainer>
-          <Link to="/">
+          <Link 
+          
+          to="/">
             The
             <br />
             Mood
@@ -135,17 +164,17 @@ const Header = ({ siteTitle, toggleDarkMode }) => {
         </LogoContainer>
         <ul className="menu">
           <li>
-            <Link to="/shop">shop</Link>
+            <Link activeClassName="active" to="/shop">shop</Link>
           </li>
           <li>
-            <Link to="/about">about</Link>
+            <Link activeClassName="active" to="/about">about</Link>
           </li>
           <li>
-            <Link to="/contact">contact</Link>
+            <Link activeClassName="active" to="/contact">contact</Link>
           </li>
         </ul>
-        <ul>
-          <li className="special">
+        <ul className="special">
+          <li>
             <Link>
               <span className="snipcart-checkout">
                 (<span className="snipcart-items-count"></span>){" "}
@@ -154,6 +183,9 @@ const Header = ({ siteTitle, toggleDarkMode }) => {
             </Link>
           </li>
         </ul>
+        <div className="burger-icon">
+          <FontAwesomeIcon onClick={toggleModal} icon={faBars} />
+        </div>
       </HeaderFlex>
     </HeaderWrapper>
   )

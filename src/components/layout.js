@@ -1,12 +1,12 @@
-import React, { useState} from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import Header from "./header"
 import Footer from "./footer"
+import Modal from "./modal"
+
 import "./layout.css"
-
-
 
 const Body = styled.div`
   display: flex;
@@ -16,7 +16,15 @@ const Body = styled.div`
   justify-content: space-between;
   font-family: "Montserrat", sans-serif;
   background-color: ${props => props.theme.colors.bgMain};
-  p, ul, h1, h2, h3, h4, h5, h6, svg {
+  p,
+  ul,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  svg {
     color: ${props => props.theme.colors.ftMain};
   }
 `
@@ -28,11 +36,13 @@ const Main = styled.main`
   align-items: center;
   justify-content: space-between;
 
-
+  @media (max-width: 800px) {
+    margin: 0 auto;
+  }
 `
 
-const Layout = ({ children }) => {
-console.log(children);
+const Layout = ({ children, toggleModal, showModal }) => {
+  console.log(children)
   const [isDarkMode, setDarkMode] = useState(false)
 
   const toggleDarkMode = () => {
@@ -48,10 +58,10 @@ console.log(children);
 
   return (
     <Body>
-      <Header />
+      <Modal toggleModal={toggleModal} showModal={showModal} />
+      <Header toggleModal={toggleModal} />
       <Main>{children}</Main>
-      <Footer/>
-
+      <Footer />
     </Body>
   )
 }

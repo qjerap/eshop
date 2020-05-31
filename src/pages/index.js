@@ -56,12 +56,10 @@ const IndexPage = () => {
                 : "exit"
             }
           >
-            <>
-              <SEO title="Home" />
-              <Hero />
-              <Favorite />
-              <Origin />
-            </>
+            <SEO title="Home" />
+            <Hero />
+            <Favorite />
+            <Origin />
           </motion.div>
         )
       }}
