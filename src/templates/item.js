@@ -16,15 +16,15 @@ const Section = styled.section`
     width: 90%;
   }
 
-  @media (max-width: 800px) {
+  /* @media (max-width: 800px) {
     width: 100%;
-  }
+  } */
 `
 
 const FlexContainer = styled.div`
   width: 100%;
   display: Flex;
-  place-items: center;
+  /* place-items: center; */
 
   @media (max-width: 800px) {
     flex-direction: column;
@@ -37,15 +37,18 @@ const ImageContainer = styled.div`
   display: flex;
   width: 100%;
   /* height: 500px; */
-  place-items: center;
+  /* place-items: center; */
 
   img {
+    object-fit: cover;
+    margin: 0 auto 2rem;
+
   }
 `
 
 const ContentContainer = styled.div`
   width: 100%;
-  height: 550px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -147,7 +150,7 @@ const Item = ({ data }) => {
     hidden: {
       opacity: 0,
       y: 0,
-      x: -60
+      x: -60,
     },
     show: {
       opacity: 1,
@@ -158,7 +161,7 @@ const Item = ({ data }) => {
       transition: {
         type: "spring",
         damping: 200,
-        mass: .5,
+        mass: 0.5,
         delayChildren: 0.3,
         staggerChildren: 0.05,
       },
@@ -188,62 +191,62 @@ const Item = ({ data }) => {
                 : "exit"
             }
           >
-      <Section>
-        <FlexContainer>
-          <ImageContainer>
-            <img src={image} alt="" />
-          </ImageContainer>
+            <Section>
+              <FlexContainer>
+                <ImageContainer>
+                  <img src={image} alt="" />
+                </ImageContainer>
 
-          <ContentContainer>
-            <div className="title">
-              <h1>{title}</h1>
-              <h4>{price}$</h4>
-            </div>
-            <div
-              className="text-content"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+                <ContentContainer>
+                  <div className="title">
+                    <h1>{title}</h1>
+                    <h4>{price}$</h4>
+                  </div>
+                  <div
+                    className="text-content"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
 
-            <div className="desc">
-              <ul>
-                <li>availability: Year round</li>
-                <li>type: blend</li>
-                <li>tasting notes: toffee</li>
-              </ul>
+                  <div className="desc">
+                    <ul>
+                      <li>availability: Year round</li>
+                      <li>type: blend</li>
+                      <li>tasting notes: toffee</li>
+                    </ul>
 
-              <ul>
-                <li>country: {title}</li>
-                <li>process: natural</li>
-                <li>direct trade: yes</li>
-              </ul>
-            </div>
+                    <ul>
+                      <li>country: {title}</li>
+                      <li>process: natural</li>
+                      <li>direct trade: yes</li>
+                    </ul>
+                  </div>
 
-            <button
-              className="snipcart-add-item reverse"
-              data-item-id={title}
-              data-item-price={price}
-              data-item-url={slug}
-              data-item-description={description}
-              data-item-image={image}
-              data-item-name={title}
-              data-item-quantity={quantity}
-              data-item-custom1-name="size"
-              data-item-custom1-options={`1 lbs|2 lbs[+${price}]|5 lbs[+${
-                price * 5
-              }]`}
-              data-item-custom2-name="format"
-              data-item-custom2-options="whole bean|ground coffee"
-            >
-              add to cart
-            </button>
-          </ContentContainer>
-        </FlexContainer>
-      </Section>
-      </motion.div>
-      )
-    }}
-  </TransitionState>
-)
+                  <button
+                    className="snipcart-add-item reverse"
+                    data-item-id={title}
+                    data-item-price={price}
+                    data-item-url={slug}
+                    data-item-description={description}
+                    data-item-image={image}
+                    data-item-name={title}
+                    data-item-quantity={quantity}
+                    data-item-custom1-name="size"
+                    data-item-custom1-options={`1 lbs|2 lbs[+${price}]|5 lbs[+${
+                      price * 5
+                    }]`}
+                    data-item-custom2-name="format"
+                    data-item-custom2-options="whole bean|ground coffee"
+                  >
+                    add to cart
+                  </button>
+                </ContentContainer>
+              </FlexContainer>
+            </Section>
+          </motion.div>
+        )
+      }}
+    </TransitionState>
+  )
 }
 
 export const pageQuery = graphql`

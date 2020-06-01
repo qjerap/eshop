@@ -36,6 +36,12 @@ const FlexContainer = styled.div`
 
   & section:first-of-type {
     margin-right: 10rem;
+
+    @media(max-width: 800px) {
+      margin-right: 0;
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+    }
   }
 
   & section {
@@ -48,14 +54,14 @@ const FlexContainer = styled.div`
 
   @media (max-width: 1100px) {
     width: 90%;
-    margin: 0 auto !important;
+    margin: 0 auto ;
     padding: 0;
     justify-content: center;
   }
 
   @media (max-width: 800px) {
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     padding: 0;
     justify-content: center;

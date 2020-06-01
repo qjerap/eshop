@@ -17,13 +17,13 @@ const Section = styled.section`
     width: 90%;
   }
 
-  @media (max-width: 800px) {
+  /* @media (max-width: 800px) {
     width: 100%;
-  }
+  } */
 
   /* ############## */
 
-  .col {
+  /* .col {
     column-count: 3;
 
     @media (max-width: 1100px) {
@@ -32,7 +32,7 @@ const Section = styled.section`
     @media (max-width: 700px) {
       column-count: 1;
     }
-  }
+  } */
 
   img {
     height: 300px;
@@ -53,7 +53,7 @@ const Grid = styled.div`
   h2,
   h3,
   p {
-    width: 90%;
+    width: 100%;
     font-weight: 300;
   }
 
