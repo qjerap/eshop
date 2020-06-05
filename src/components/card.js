@@ -58,9 +58,9 @@ position: relative;
     & button {
       cursor: pointer;
       background: transparent;
-      color: #fff;
+      color: ${props => props.theme.colors.ftBtn};
       width: 100%;
-      border: 2px solid #fff;
+      border: 2px solid ${props => props.theme.colors.ftBtn};
       padding: 0.5rem 0.25rem;
       border-radius: 0.1rem;
       text-transform: uppercase;
@@ -79,6 +79,8 @@ position: relative;
       &.reverse {
         background-color: ${props => props.theme.colors.ftBright};
         border: 2px solid ${props => props.theme.colors.ftBright};
+        color: ${props => props.theme.colors.ftBtnMain};
+
 
         &:hover {
           background-color: transparent;

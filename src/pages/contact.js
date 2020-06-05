@@ -84,6 +84,7 @@ const OpeningTime = styled.div`
   justify-content: space-between;
   font-size: 0.8rem;
 
+
   & ul:last-of-type {
     text-align: right;
   }

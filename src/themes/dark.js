@@ -12,6 +12,8 @@ export default {
     ftMLight: "rgba(250, 250, 250, 0.55)",
     ftXLight: "rgba(250, 250, 250, 0.025)",
 
+    ftBtn: "#fff",
+
     ftBtnMain: "#fff",
 
     // background: "#FFF",
